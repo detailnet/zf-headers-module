@@ -38,13 +38,6 @@ class ModuleTest extends TestCase
         $this->assertTrue(is_array($config['detail_headers']));
     }
 
-    public function testModuleProvidesControllerConfig()
-    {
-        $config = $this->module->getControllerConfig();
-
-        $this->assertTrue(is_array($config));
-    }
-
     public function testModuleProvidesServiceConfig()
     {
         $config = $this->module->getServiceConfig();

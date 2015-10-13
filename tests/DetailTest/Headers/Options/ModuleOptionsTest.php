@@ -14,8 +14,8 @@ class ModuleOptionsTest extends OptionsTestCase
         $this->options = $this->getOptions(
             'Detail\Headers\Options\ModuleOptions',
             array(
-                'getAuthorization',
-                'setAuthorization',
+                'getListeners',
+                'setListeners',
             )
         );
     }
@@ -25,14 +25,14 @@ class ModuleOptionsTest extends OptionsTestCase
         $this->assertInstanceOf('Detail\Headers\Options\ModuleOptions', $this->options);
     }
 
-    public function testAuthorizationCanBeSet()
+    public function testListenersCanBeSet()
     {
-        $this->assertNull($this->options->getAuthorization());
+        $this->assertEquals(array(), $this->options->getListeners());
 
-        $this->options->setAuthorization(array());
+        $listeners = array('Some\Listener\Class');
 
-        $authorization = $this->options->getAuthorization();
+        $this->options->setListeners($listeners);
 
-        $this->assertInstanceOf('Detail\Headers\Options\Authorization\AuthorizationOptions', $authorization);
+        $this->assertEquals($listeners, $this->options->getListeners());
     }
 }

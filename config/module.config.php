@@ -7,6 +7,7 @@ return array(
         'aliases' => array(
         ),
         'invokables' => array(
+            'Detail\Headers\Listener\ContentLengthHeaderListener' => 'Detail\Headers\Listener\ContentLengthHeaderListener',
         ),
         'factories' => array(
             'Detail\Headers\Options\ModuleOptions' => 'Detail\Headers\Factory\Options\ModuleOptionsFactory',
@@ -17,5 +18,7 @@ return array(
         ),
     ),
     'detail_headers' => array(
+        'listeners' => array(
+        ),
     ),
 );

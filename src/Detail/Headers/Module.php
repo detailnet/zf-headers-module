@@ -2,7 +2,7 @@
 
 namespace Detail\Headers;
 
-//use Zend\Http\Request as HttpRequest;
+use Zend\EventManager\ListenerAggregateInterface;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -15,13 +15,33 @@ class Module implements
     ConfigProviderInterface,
     ServiceProviderInterface
 {
+    /**
+     * @param MvcEvent $event
+     */
     public function onBootstrap(MvcEvent $event)
     {
-        $this->bootstrapHeaders($event);
+        $this->bootstrapListeners($event);
     }
 
-    public function bootstrapHeaders(MvcEvent $event)
+    /**
+     * @param MvcEvent $event
+     */
+    public function bootstrapListeners(MvcEvent $event)
     {
+        /** @var \Zend\ServiceManager\ServiceManager $services */
+        $services = $event->getApplication()->getServiceManager();
+        $events = $event->getApplication()->getEventManager();
+
+        /** @var Options\ModuleOptions $moduleConfig */
+        $moduleConfig = $services->get(Options\ModuleOptions::CLASS);
+
+        // Attach configured listeners
+        foreach ($moduleConfig->getListeners() as $listenerClass) {
+            /** @var ListenerAggregateInterface $listener */
+            $listener = $services->get($listenerClass);
+
+            $events->attachAggregate($listener);
+        }
     }
 
     /**

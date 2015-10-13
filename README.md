@@ -6,7 +6,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/detailnet/zf-headers-module/v/unstable.svg)](https://packagist.org/packages/detailnet/zf-headers-module)
 
 ## Introduction
-This module currently only fixes a [bug in ZF](https://github.com/zendframework/zend-http/issues/26) related to sending proper Content-Type headers.
+This module currently only fixes a [bug in ZF](https://github.com/zendframework/zend-http/issues/26) related to sending proper Content-Length headers.
 
 ## Requirements
 [Zend Framework 2 Skeleton Application](http://www.github.com/zendframework/ZendSkeletonApplication) (or compatible architecture)

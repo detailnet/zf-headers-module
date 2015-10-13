@@ -2,5 +2,8 @@
 
 return array(
     'detail_headers' => array(
+        'listeners' => array(
+            'Detail\Headers\Listener\ContentLengthHeaderListener',
+        ),
     ),
 );
